@@ -1,7 +1,7 @@
 const params = new URLSearchParams(window.location.search);
-const host = params.get('wslog_host') || 'localhost';
-const gSocket = new WebSocket(`ws://${host}:9111`);
+const hostname = params.get('wslog_hostname') || window.location.hostname;
+const socket = new WebSocket(`ws://${hostname}:9111`);
 
 export function wslog() {
-  gSocket.send(Array.from(arguments).map(i => JSON.stringify(i)).join(' '));
+  socket.send(Array.from(arguments).map(i => JSON.stringify(i)).join(' '));
 }
